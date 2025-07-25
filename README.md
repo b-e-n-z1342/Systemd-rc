@@ -1,5 +1,7 @@
 # Systemd-rc
-конвектор команд для Open-RC.
+
+
+###### конвектор команд для Open-RC.
 конвектор не эмулирует systemd, а только переводит команды для systemd в openrc 
 
 ## установка
@@ -9,10 +11,15 @@ cd Systemd-rc
 ./install
 ```
 
-## Для QuasarLinux 
-установка очень простая одной командой 
+## команды
+``
+systemctl {ebable/diseble/stop/start/status} <процесс>
+``
+## что под капотом
 
-```
-pkg -I systemd-rc
-```
-весь код на bash
+``
+rc-update -- systemctl enable/disable --  default 
+``
+``
+rc-service -- systemctl start/status/stop --
+``
