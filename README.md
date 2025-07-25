@@ -20,6 +20,12 @@ systemctl {ebable/diseble/stop/start/status} <процесс>
 ``
 rc-update -- systemctl enable/disable --  default 
 ``
+### _
 ``
 rc-service -- systemctl start/status/stop --
 ``
+
+## Где уже используется 
+
+Этот скрипт уже используется в QuasarLinux 
+https://b-e-n-z1342.github.io/
