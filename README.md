@@ -17,15 +17,14 @@ systemctl {ebable/diseble/stop/start/status} <процесс>
 ``
 ## что под капотом
 
-``
-rc-update -- systemctl enable/disable --  default 
-``
-### _
-``
-rc-service -- systemctl start/status/stop --
-``
+команды:
+
+-  rc-update -- systemctl enable/disable --  default 
+
+-  rc-service -- systemctl start/status/stop -- 
+
 
 ## Где уже используется 
 
-Этот скрипт уже используется в QuasarLinux 
-https://b-e-n-z1342.github.io/
+от скрипт уже используется в QuasarLinux 
+  - https://b-e-n-z1342.github.io/ 
