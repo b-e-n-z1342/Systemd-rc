@@ -1,0 +1,9 @@
+#!/bin/bash
+if [[ $EUID -eq 0 ]]; then
+    echo ""
+else
+    echo "скрипт запускать надо только от root"
+    exit 1
+fi
+cp systemctl /usr/local/bin/
+cp journalctl /usr/local/bin/
