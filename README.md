@@ -13,7 +13,7 @@ cd Systemd-rc
 
 ## команды
 ``
-systemctl {ebable/diseble/stop/start/status} <процесс>
+systemctl {ebable/diseble/stop/start/status/restart/list} <процесс>
 ``
 ## что под капотом
 
