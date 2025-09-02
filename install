@@ -7,3 +7,5 @@ else
 fi
 cp systemctl /usr/local/bin/
 cp journalctl /usr/local/bin/
+chmod +x /usr/local/bin/systemctl
+chmod +x /usr/local/bin/journalctl
