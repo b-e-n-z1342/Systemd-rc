@@ -1,11 +1,10 @@
 #!/bin/bash
-if [[ $EUID -eq 0 ]]; then
-    echo ""
-else
-    echo "скрипт запускать надо только от root"
-    exit 1
-fi
-cp systemctl /usr/local/bin/
-cp journalctl /usr/local/bin/
-chmod +x /usr/local/bin/systemctl
-chmod +x /usr/local/bin/journalctl
+
+which vim || echo "err: vim не найден" & exit 1
+which go || echo "err: Сборка не возможна, go не установлен" & ext 1
+which cat || echo "err: cat не установлен" & exit 1
+which openrc || echo "Скрипт пока только под openrc" & exit 1
+
+go build system/openrc/systemctl
+sudo cp system/openrc/systemctl /usr/local/bin/
+
