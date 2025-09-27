@@ -38,5 +38,7 @@ journalctl:
 
 этот скрипт скоро будет использоваться в QuasarLinux 
   - https://b-e-n-z1342.github.io/QuasarLinux 
+
 [Wiki](https://github.com/b-e-n-z1342/Systemd-rc/wiki)
+
 [Wiki по коду](https://github.com/b-e-n-z1342/Systemd-rc/wiki/devel)
