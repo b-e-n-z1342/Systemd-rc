@@ -26,5 +26,5 @@ systemctl {ebable/diseble/stop/start/status/restart/list} <процесс>
 
 ## Где уже используется 
 
-от скрипт уже используется в QuasarLinux 
-  - https://b-e-n-z1342.github.io/ 
+этот скрипт скоро будет использоваться в QuasarLinux 
+  - https://b-e-n-z1342.github.io/QuasarLinux 
