@@ -1,10 +1,70 @@
 #!/bin/bash
 
-which vim || echo "err: vim не найден" & exit 1
-which go || echo "err: Сборка не возможна, go не установлен" & ext 1
-which cat || echo "err: cat не установлен" & exit 1
-which openrc || echo "Скрипт пока только под openrc" & exit 1
+set -e  # выход при первой ошибке
 
-go build system/openrc/systemctl
-sudo cp system/openrc/systemctl /usr/local/bin/
+# Цвета для вывода
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
 
+error() {
+    echo -e "${RED}err: $1${NC}" >&2
+    exit 1
+}
+
+info() {
+    echo -e "${GREEN}=> $1${NC}"
+}
+
+# Проверка обязательных утилит
+for cmd in go cp sudo; do
+    if ! command -v "$cmd" &> /dev/null; then
+        error "'$cmd' не установлен"
+    fi
+done
+
+# Определяем init-систему
+init_system=""
+
+# Проверяем, запущен ли OpenRC (наличие rc-service)
+if command -v rc-service &> /dev/null; then
+    init_system="openrc"
+elif [ -d "/etc/sv" ] && [ -d "/var/service" ]; then
+    # runit: есть директории служб
+    init_system="runit"
+else
+    error "Не найдена поддерживаемая init-система (OpenRC или runit)"
+fi
+
+info "Обнаружена init-система: $init_system"
+
+# Пути к исходникам
+SRC_OPENRC="system/openrc/systemctl.go"
+SRC_RUNIT="system/runit/systemctl.go"
+BINARY_NAME="systemctl"
+
+# Проверяем наличие нужного файла
+if [ "$init_system" = "openrc" ]; then
+    if [ ! -f "$SRC_OPENRC" ]; then
+        error "Файл $SRC_OPENRC не найден"
+    fi
+    SRC_FILE="$SRC_OPENRC"
+elif [ "$init_system" = "runit" ]; then
+    if [ ! -f "$SRC_RUNIT" ]; then
+        error "Файл $SRC_RUNIT не найден"
+    fi
+    SRC_FILE="$SRC_RUNIT"
+fi
+
+# Сборка
+info "Сборка для $init_system..."
+CGO_ENABLED=0 GOOS=linux go build -a -ldflags '-s -w -extldflags "-static"' -o "$BINARY_NAME" "$SRC_FILE"
+
+# Установка
+info "Установка в /usr/local/bin/..."
+sudo install -m 755 "$BINARY_NAME" /usr/local/bin/"$BINARY_NAME"
+
+# Уборка
+rm -f "$BINARY_NAME"
+
+info "Готово! Утилита systemctl установлена для $init_system."
