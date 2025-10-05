@@ -24,20 +24,14 @@ journalctl:
 --since 1h            --- Парсит 1 час 30m фильтрует по времени.   
 ```
 ### Зависимости
-- go
-- elogind
-### для runit
-- go
-- elogind
-- sv 
-### для dinit
-- go
-- elogind
-  
-## Где уже используется 
 
-этот скрипт скоро будет использоваться в QuasarLinux 
-  - https://b-e-n-z1342.github.io/QuasarLinux 
+|runit|dinit|s6|openrc|
+|-----|-----|----|----|
+|go   |go   |go  |go  |
+|elogind|elogind|elogind|elogind|
+
+## Где уже используется 
+[QuasarLinux](https://b-e-n-z1342.github.io/QuasarLinux)
 
 [Wiki](https://github.com/b-e-n-z1342/Systemd-rc/wiki)
 
