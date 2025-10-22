@@ -26,14 +26,15 @@ done
 # Определяем init-систему
 init_system=""
 
-# Проверяем, запущен ли OpenRC (наличие rc-service)
-if command -v rc-service &> /dev/null; then
+# Проверяем системы в порядке приоритета
+if command -v rc-service &> /dev/null && [ -d "/etc/init.d" ]; then
     init_system="openrc"
+elif command -v dinitctl &> /dev/null && [ -d "/etc/dinit.d" ]; then
+    init_system="dinit"
 elif [ -d "/etc/sv" ] && [ -d "/var/service" ]; then
-    # runit: есть директории служб
     init_system="runit"
 else
-    error "Не найдена поддерживаемая init-система (OpenRC или runit)"
+    error "Не найдена поддерживаемая init-система (OpenRC, dinit или runit)"
 fi
 
 info "Обнаружена init-система: $init_system"
@@ -41,20 +42,33 @@ info "Обнаружена init-система: $init_system"
 # Пути к исходникам
 SRC_OPENRC="system/openrc/systemctl.go"
 SRC_RUNIT="system/runit/systemctl.go"
+SRC_DINIT="system/dinit/systemctl.go"
 BINARY_NAME="systemctl"
 
 # Проверяем наличие нужного файла
-if [ "$init_system" = "openrc" ]; then
-    if [ ! -f "$SRC_OPENRC" ]; then
-        error "Файл $SRC_OPENRC не найден"
-    fi
-    SRC_FILE="$SRC_OPENRC"
-elif [ "$init_system" = "runit" ]; then
-    if [ ! -f "$SRC_RUNIT" ]; then
-        error "Файл $SRC_RUNIT не найден"
-    fi
-    SRC_FILE="$SRC_RUNIT"
-fi
+case "$init_system" in
+    "openrc")
+        if [ ! -f "$SRC_OPENRC" ]; then
+            error "Файл $SRC_OPENRC не найден"
+        fi
+        SRC_FILE="$SRC_OPENRC"
+        ;;
+    "runit")
+        if [ ! -f "$SRC_RUNIT" ]; then
+            error "Файл $SRC_RUNIT не найден"
+        fi
+        SRC_FILE="$SRC_RUNIT"
+        ;;
+    "dinit")
+        if [ ! -f "$SRC_DINIT" ]; then
+            error "Файл $SRC_DINIT не найден"
+        fi
+        SRC_FILE="$SRC_DINIT"
+        ;;
+    *)
+        error "Неподдерживаемая init-система"
+        ;;
+esac
 
 # Сборка
 info "Сборка для $init_system..."

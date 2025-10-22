@@ -115,7 +115,7 @@ func main() {
 		case "reboot":
 			runCommand("reboot")
 
-		case "is-enabled": // ← правильное имя команды!
+		case "is-enabled":
 			if service == "" {
 				fmt.Fprintln(os.Stderr, "error: service name required")
 				os.Exit(2)
