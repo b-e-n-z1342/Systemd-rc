@@ -17,12 +17,7 @@ systemctl {ebable/ diseble / stop/ start / status / restart / list-unit / is-ena
 ## power
 systemctl { poweroff / restart / hatl / suspend / hibernate}
 ```
-journalctl:
-```
--k                    --- ядро.
--u <сервис> -f        --- следит за логами.
---since 1h            --- Парсит 1 час 30m фильтрует по времени.   
-```
+
 ### Зависимости
 
 |runit|dinit|s6|openrc|
