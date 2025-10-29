@@ -1,8 +1,8 @@
 # Systemd-rc
 
 
-### Конвектор команд Systemd в другие init.
-Конвектор не эмулирует systemd, а только переводит команды для systemd в другие init. Он ещё не умеет переводить скрипты или файлы конфигурации. 
+### Конвертер команд Systemd в другие init.
+Конвертер не эмулирует systemd, а только переводит команды для systemd в другие init. Он ещё не умеет переводить скрипты или файлы конфигурации. 
 
 ## установка
 ```
@@ -13,9 +13,9 @@ cd Systemd-rc
 
 ## команды
 ```
-systemctl {ebable/ diseble / stop/ start / status / restart / list-unit / is-enable} <процесс>
+systemctl {enable / disable / stop / start / status / restart / list-unit / is-enable} <процесс>
 ## power
-systemctl { poweroff / restart / hatl / suspend / hibernate}
+systemctl { poweroff / restart / halt / suspend / hibernate}
 ```
 
 ### Зависимости
