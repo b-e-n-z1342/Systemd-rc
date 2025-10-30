@@ -13,7 +13,7 @@ cd Systemd-rc
 
 ## команды
 ```
-systemctl {ebable/ diseble / stop/ start / status / restart / list-unit / is-enable} <процесс>
+systemctl {enable/ disable / stop / start / status / restart / list-unit / is-enable} <процесс>
 ## power
 systemctl { poweroff / restart / hatl / suspend / hibernate}
 ```
