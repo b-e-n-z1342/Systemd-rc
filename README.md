@@ -11,7 +11,7 @@
 <div align="center">
 
 [![Сайт](https://img.shields.io/badge/🌐-Официальный_сайт-2D2B55?style=for-the-badge&logo=google-chrome)](https://b-e-n-z1342.github.io/SystemdRC)
-[![GitHub](https://img.shields.io/badge/💻-Исходный_код-FF6C37?style=for-the-badge&logo=gitlab)](https://github.com/b-e-n-z1342/Systemd-rc)
+[![GitLab](https://img.shields.io/badge/💻-Исходный_код-FF6C37?style=for-the-badge&logo=gitlab)](https://gitlab.com/Quasar_benz/Systemd-rc)
 
 </div>
 
