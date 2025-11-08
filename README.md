@@ -30,7 +30,7 @@ cd Systemd-rc
 ```
 systemctl {enable|disable|stop|start|status|restart|list-unit|is-enabled} <служба>
 ## Управление питанием 
-systemctl {poweroff|restart|halt|suspend|hibernate}
+systemctl {poweroff|reboot|halt|suspend|hibernate}
 ```
 
 ### Зависимости
